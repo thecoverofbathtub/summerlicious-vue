@@ -3,9 +3,9 @@
     <table>
       <thead>
       <tr>
-      <th>Restaurant Name</th>
-      <th>Yelp Rating</th>
-      <th>Yelp Review Count</th>
+      <th><a href="#" v-on:click="sortByProperty('name')">Restaurant Name</a></th>
+      <th><a href="#" v-on:click="sortByProperty('stars')">Yelp Rating</a></th>
+      <th><a href="#" v-on:click="sortByProperty('count')">Yelp Review Count</a></th>
       <th>Yelp Link</th>
       </thead>
       <tbody>
@@ -26,8 +26,19 @@ import { details } from './details.json';
 export default {
   data() {
     return {
-      details
+      details,
+      isPropertyDescending: {}
     };
+  },
+  methods: {
+    sortByProperty(property) {
+      const { details, isPropertyDescending } = this;
+      isPropertyDescending[property] = !isPropertyDescending[property];
+      details.sort((a, b) => {
+        const pa = a[property], pb = b[property];
+        return (isPropertyDescending[property] ? -1 : 1) * (pa === pb ? 0 : (pa < pb ? -1 : 1));
+      });
+    }
   }
 };
 </script>

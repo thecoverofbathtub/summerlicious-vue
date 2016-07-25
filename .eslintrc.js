@@ -13,7 +13,10 @@ module.exports = {
   'rules': {
     'comma-dangle': 0,
     'import/no-unresolved': 0,
-    // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'no-nested-ternary': 0,
+    'no-shadow': 1,
+    'one-var': 0,
+    'one-var-declaration-per-line': 0
   }
-}
+};
